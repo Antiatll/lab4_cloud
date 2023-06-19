@@ -15,15 +15,13 @@ def create_key_pair():
 def create_instance():
     ec2_client = boto3.client("ec2", region_name="eu-north-1")
     instances = ec2_client.run_instances(
-        ImageId="i-097f3bf50a557abc6",#з першої лаби
+        ImageId="ami-09d460305982fdfcf ",
         MinCount=1,
         MaxCount=1,
         InstanceType="t3.micro",
         KeyName="ec2-key-pair"
     )
     print(instances["Instances"][0]["InstanceId"])
-
-create_instance()
 
 def get_public_ip(instance_id):
     ec2_client = boto3.client("ec2", region_name="eu-north-1")
@@ -174,4 +172,4 @@ def destroy_bucket(bucket_name):
 
 #read_csv_from_bucket("lab2-yanello-bucket", "data.csv")
 print(get_running_instances())
-print(get_public_ip())
+
